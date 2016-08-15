@@ -313,10 +313,11 @@ function compare(){
 
 setInterval(function runGetData(){
 	getData();
-}, 1000)
+}, 5000)
 
 
 setInterval(function runCompare(){
 	compare();
+	console.log("\n\n\n\n\n\n\n\n\n");
 }, 5000)
 
