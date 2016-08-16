@@ -6,15 +6,7 @@ var flatten = require('flat');
 
 //list of xchgs urls: an Array of exchange name, pair and endpoint url>
 var urls = [    
-	['yobit', 'ltcbtc', 'https://yobit.net/api/3/ticker/ltc_btc'],
-	['yobit', 'etcbtc', 'https://yobit.net/api/3/ticker/etc_btc'],
-	['yobit', 'ethbtc', 'https://yobit.net/api/3/ticker/eth_btc'],
-	['yobit', 'dashbtc', 'https://yobit.net/api/3/ticker/dash_btc'],
-	['yobit', 'lsk[', 'https://yobit.net/api/3/ticker/lsk_btc'],
-	['yobit', 'edrcbtc', 'https://yobit.net/api/3/ticker/edrc_btc'],
-	['yobit', 'dogebtc', 'https://yobit.net/api/3/ticker/doge_btc'],
-	['yobit', 'lcbtc', 'https://yobit.net/api/3/ticker/lc_btc'],
-	['yobit', 'krbtc', 'https://yobit.net/api/3/ticker/kr_btc']
+	['foxbit', 'brlbtc', 'https://api.blinktrade.com/api/v1/BRL/ticker']
 ];
 
 
