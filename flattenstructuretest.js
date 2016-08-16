@@ -6,29 +6,15 @@ var flatten = require('flat');
 
 //list of xchgs urls: an Array of exchange name, pair and endpoint url>
 var urls = [    
-  ['bittrex', 'ltcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-LTC'],
-  ['bittrex', 'ethbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-ETH'],
-  ['bittrex', 'etcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-ETC'],
-  ['bittrex', 'ltcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-EGC'],
-  ['bittrex', 'wavesbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-WAVES'],
-  ['bittrex', 'fctbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-FCT'],
-  ['bittrex', 'steembtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-STEEM'],
-  ['bittrex', 'lskbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-LSK'],
-  ['bittrex', 'voxbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-VOX'],
-  ['bittrex', 'maidbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-MAID'],
-  ['bittrex', 'krbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-KR'],
-  ['bittrex', 'dracobtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-DRACO'],
-  ['bittrex', 'nxtbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-NXT'],
-  ['bittrex', 'clubbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-CLUB'],
-  ['bittrex', 'dogebtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-DOGE'],
-  ['bittrex', 'dashbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-DASH'],
-  ['bittrex', 'ftcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-FTC'],
-  ['bittrex', 'xmrbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-XMR'],
-  ['bittrex', 'etceth', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=ETH-ETC'],
-  ['bittrex', 'vtcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-VTC'],
-  ['bittrex', 'vrcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-VRC'],
-  ['bittrex', 'blkbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-BLK']
-
+	['yobit', 'ltcbtc', 'https://yobit.net/api/3/ticker/ltc_btc'],
+	['yobit', 'etcbtc', 'https://yobit.net/api/3/ticker/etc_btc'],
+	['yobit', 'ethbtc', 'https://yobit.net/api/3/ticker/eth_btc'],
+	['yobit', 'dashbtc', 'https://yobit.net/api/3/ticker/dash_btc'],
+	['yobit', 'lsk[', 'https://yobit.net/api/3/ticker/lsk_btc'],
+	['yobit', 'edrcbtc', 'https://yobit.net/api/3/ticker/edrc_btc'],
+	['yobit', 'dogebtc', 'https://yobit.net/api/3/ticker/doge_btc'],
+	['yobit', 'lcbtc', 'https://yobit.net/api/3/ticker/lc_btc'],
+	['yobit', 'krbtc', 'https://yobit.net/api/3/ticker/kr_btc']
 ];
 
 

@@ -26,20 +26,22 @@ var urls = [
 	['btce', 'ltcusd', 'https://btc-e.com/api/3/ticker/ltc_usd'],
 	['btce', 'ppcusd', 'https://btc-e.com/api/3/ticker/ppc_usd'],
 	['btce', 'nmcusd', 'https://btc-e.com/api/3/ticker/nmc_usd'],
+	['btce', 'nmcbtc', 'https://btc-e.com/api/3/ticker/nmc_btc'],
 	['btce', 'btcusd', 'https://btc-e.com/api/3/ticker/btc_usd'],
 	['btce', 'btceur', 'https://btc-e.com/api/3/ticker/btc_eur'],
+	['btce', 'dashbtc', 'https://btc-e.com/api/3/ticker/dash_btc'],
 	['btce', 'btcrub', 'https://btc-e.com/api/3/ticker/btc_rur'],
-	['kraken', 'dogebtc', 'https://api.kraken.com/0/public/Ticker?pair=XXDGXXBT'],
-	['kraken', 'btceur', 'https://api.kraken.com/0/public/Ticker?pair=XXBTZEUR'],
-	['kraken', 'ethbtc', 'https://api.kraken.com/0/public/Ticker?pair=XETHXXBT'],
-	['kraken', 'etcbtc', 'https://api.kraken.com/0/public/Ticker?pair=XETCXXBT'],
-	['kraken', 'etceur', 'https://api.kraken.com/0/public/Ticker?pair=XETCZEUR'],
-	['kraken', 'etceth', 'https://api.kraken.com/0/public/Ticker?pair=XETCXETH'],
-	['kraken', 'daoeth', 'https://api.kraken.com/0/public/Ticker?pair=XDAOXETH'],
-	['kraken', 'ltcbtc', 'https://api.kraken.com/0/public/Ticker?pair=XLTCXXBT'],
-	['kraken', 'xrpbtc', 'https://api.kraken.com/0/public/Ticker?pair=XXRPXXBT'],
-	['kraken', 'daoeur', 'https://api.kraken.com/0/public/Ticker?pair=XDAOZEUR'],
-	['kraken', 'ltceur', 'https://api.kraken.com/0/public/Ticker?pair=XLTCZEUR'],
+	// ['kraken', 'dogebtc', 'https://api.kraken.com/0/public/Ticker?pair=XXDGXXBT'],
+	// ['kraken', 'btceur', 'https://api.kraken.com/0/public/Ticker?pair=XXBTZEUR'],
+	// ['kraken', 'ethbtc', 'https://api.kraken.com/0/public/Ticker?pair=XETHXXBT'],
+	// ['kraken', 'etcbtc', 'https://api.kraken.com/0/public/Ticker?pair=XETCXXBT'],
+	// ['kraken', 'etceur', 'https://api.kraken.com/0/public/Ticker?pair=XETCZEUR'],
+	// ['kraken', 'etceth', 'https://api.kraken.com/0/public/Ticker?pair=XETCXETH'],
+	// ['kraken', 'daoeth', 'https://api.kraken.com/0/public/Ticker?pair=XDAOXETH'],
+	// ['kraken', 'ltcbtc', 'https://api.kraken.com/0/public/Ticker?pair=XLTCXXBT'],
+	// ['kraken', 'xrpbtc', 'https://api.kraken.com/0/public/Ticker?pair=XXRPXXBT'],
+	// ['kraken', 'daoeur', 'https://api.kraken.com/0/public/Ticker?pair=XDAOZEUR'],
+	// ['kraken', 'ltceur', 'https://api.kraken.com/0/public/Ticker?pair=XLTCZEUR'],
 	['bitfinex', 'ethbtc', 'https://api.bitfinex.com/v1/pubticker/ethbtc'],
 	['bitfinex', 'ltcbtc', 'https://api.bitfinex.com/v1/pubticker/ltcbtc'],
 	['bitfinex', 'etcbtc', 'https://api.bitfinex.com/v1/pubticker/etcbtc'],
@@ -51,10 +53,12 @@ var urls = [
 	['bter', 'dogebtc', 'http://data.bter.com/api/1/ticker/doge_btc'],
 	['bter', 'ltcbtc', 'http://data.bter.com/api/1/ticker/ltc_btc'],
 	['bter', 'xmrbtc', 'http://data.bter.com/api/1/ticker/xmr_btc'],
+	['bittrex', 'stratbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-STRAT'],
+	['bittrex', 'dgbbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-DGB'],
 	['bittrex', 'ltcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-LTC'],
   	['bittrex', 'ethbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-ETH'],
   	['bittrex', 'etcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-ETC'],
-  	['bittrex', 'ecgbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-EGC'],
+  	['bittrex', 'egcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-EGC'],
  	['bittrex', 'wavesbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-WAVES'],
   	['bittrex', 'fctbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-FCT'],
   	['bittrex', 'steembtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-STEEM'],
@@ -72,7 +76,28 @@ var urls = [
   	['bittrex', 'etceth', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=ETH-ETC'],
   	['bittrex', 'vtcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-VTC'],
   	['bittrex', 'vrcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-VRC'],
-  	['bittrex', 'blkbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-BLK']
+  	['bittrex', 'blkbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-BLK'],
+  	['hitbtc', 'btcusd', 'https://api.hitbtc.com/api/1/public/BTCUSD/ticker'],
+ 	['hitbtc', 'btceur', 'https://api.hitbtc.com/api/1/public/BTCEUR/ticker'],
+ 	['hitbtc', 'ltcbtc', 'https://api.hitbtc.com/api/1/public/LTCBTC/ticker'],
+ 	['hitbtc', 'ltcusd', 'https://api.hitbtc.com/api/1/public/LTCUSD/ticker'],
+  	['hitbtc', 'ltceur', 'https://api.hitbtc.com/api/1/public/LTCEUR/ticker'],
+  	['hitbtc', 'dogebtc', 'https://api.hitbtc.com/api/1/public/DOGEBTC/ticker'],
+  	['hitbtc', 'xmrbtc', 'https://api.hitbtc.com/api/1/public/XMRBTC/ticker'],
+	['therock', 'btceur', 'https://www.therocktrading.com/api/ticker/BTCEUR'],
+	['therock', 'btcusd', 'https://www.therocktrading.com/api/ticker/BTCUSD'],
+	['therock', 'ltceur', 'https://www.therocktrading.com/api/ticker/LTCEUR'],
+	// ['therock', 'ltcbtc', 'https://www.therocktrading.com/api/ticker/LTCBTC'],
+	['therock', 'ethbtc', 'https://www.therocktrading.com/api/ticker/ETHBTC'],
+	['yobit', 'ltcbtc', 'https://yobit.net/api/3/ticker/ltc_btc'],
+	['yobit', 'etcbtc', 'https://yobit.net/api/3/ticker/etc_btc'],
+	['yobit', 'ethbtc', 'https://yobit.net/api/3/ticker/eth_btc'],
+	['yobit', 'dashbtc', 'https://yobit.net/api/3/ticker/dash_btc'],
+	['yobit', 'lsk[', 'https://yobit.net/api/3/ticker/lsk_btc'],
+	['yobit', 'edrcbtc', 'https://yobit.net/api/3/ticker/edrc_btc'],
+	['yobit', 'dogebtc', 'https://yobit.net/api/3/ticker/doge_btc'],
+	['yobit', 'lcbtc', 'https://yobit.net/api/3/ticker/lc_btc'],
+	['yobit', 'krbtc', 'https://yobit.net/api/3/ticker/kr_btc']
 ];
 
 
@@ -101,6 +126,16 @@ function stdData(xchg, pair, data){
 		myDB[objID]['pair'] = pair;
 		myDB[objID]['bid'] =  data.best_bid;
 		myDB[objID]['ask'] = data.best_ask;
+		myDB[objID]['last'] = data.last;
+		myDB[objID]['vol'] = data.volume;
+	}
+	if(xchg === 'hitbtc'){
+		var objID = xchg + pair;
+		myDB[objID] = {};
+		myDB[objID]['xchg'] = xchg;
+		myDB[objID]['pair'] = pair;
+		myDB[objID]['bid'] =  data.bid;
+		myDB[objID]['ask'] = data.ask;
 		myDB[objID]['last'] = data.last;
 		myDB[objID]['vol'] = data.volume;
 	}
@@ -133,6 +168,77 @@ function stdData(xchg, pair, data){
 		myDB[objID]['ask'] = data['result.0.Ask'];
 		myDB[objID]['last'] = data['result.0.Last'];
 		myDB[objID]['vol'] = data['result.0.Volume'];
+	}
+		if(xchg === 'therock'){
+		var objID = xchg + pair;
+		myDB[objID] = {};
+		myDB[objID]['xchg'] = xchg;
+		myDB[objID]['pair'] = pair;
+		myDB[objID]['bid'] =  data['result.0.bid'];
+		myDB[objID]['ask'] = data['result.0.ask'];
+		myDB[objID]['last'] = data['result.0.last'];
+		myDB[objID]['vol'] = data['result.0.volume'];
+	}
+	if(xchg === 'yobit'){
+		var objID = xchg + pair;
+		myDB[objID] = {};
+		myDB[objID]['xchg'] = xchg;
+		myDB[objID]['pair'] = pair;
+		switch (pair){
+			case 'etcbtc' :
+				myDB[objID]['bid'] =   data['etc_btc.buy'];
+				myDB[objID]['ask'] =  data['etc_btc.sell'];
+				myDB[objID]['last'] = data['etc_btc.last'];
+				myDB[objID]['vol'] =  data['etc_btc.vol'];
+				break;
+			case 'ethbtc' :
+				myDB[objID]['bid'] =   data['eth_btc.buy'];
+				myDB[objID]['ask'] =  data['eth_btc.sell'];
+				myDB[objID]['last'] = data['eth_btc.last'];
+				myDB[objID]['vol'] =  data['eth_btc.vol'];
+				break;
+			case 'dashbtc' :
+				myDB[objID]['bid'] =   data['dash_btc.buy'];
+				myDB[objID]['ask'] =  data['dash_btc.sell'];
+				myDB[objID]['last'] = data['dash_btc.last'];
+				myDB[objID]['vol'] =  data['dash_btc.vol'];
+				break;
+			case 'lskbtc' :
+				myDB[objID]['bid'] =   data['lsk_btc.buy'];
+				myDB[objID]['ask'] =  data['lsk_btc.sell'];
+				myDB[objID]['last'] = data['lsk_btc.last'];
+				myDB[objID]['vol'] =  data['lsk_btc.vol'];
+				break;
+			case 'edrcbtc' :
+				myDB[objID]['bid'] =   data['edrc_btc.buy'];
+				myDB[objID]['ask'] =  data['edrc_btc.sell'];
+				myDB[objID]['last'] = data['edrc_btc.last'];
+				myDB[objID]['vol'] =  data['edrc_btc.vol'];
+				break;
+			case 'ltcbtc' :
+				myDB[objID]['bid'] =   data['ltc_btc.buy'];
+				myDB[objID]['ask'] =  data['ltc_btc.sell'];
+				myDB[objID]['last'] = data['ltc_btc.last'];
+				myDB[objID]['vol'] =  data['ltc_btc.vol'];
+				break;
+			case 'dogebtc' :
+				myDB[objID]['bid'] =   data['doge_btc.buy'];
+				myDB[objID]['ask'] =  data['doge_btc.sell'];
+				myDB[objID]['last'] = data['doge_btc.last'];
+				myDB[objID]['vol'] =  data['doge_btc.vol'];
+				break;
+			case 'lcbtc' :
+				myDB[objID]['bid'] =   data['lc_btc.buy'];
+				myDB[objID]['ask'] =  data['lc_btc.sell'];
+				myDB[objID]['last'] = data['lc_btc.last'];
+				myDB[objID]['vol'] =  data['lc_btc.vol'];
+				break;
+			case 'krbtc' :
+				myDB[objID]['bid'] =   data['kr_btc.buy'];
+				myDB[objID]['ask'] =  data['kr_btc.sell'];
+				myDB[objID]['last'] = data['kr_btc.last'];
+				myDB[objID]['vol'] =  data['kr_btc.vol'];
+		}
 	}
 	if(xchg === 'btce'){
 		var objID = xchg + pair;
@@ -193,6 +299,18 @@ function stdData(xchg, pair, data){
 				myDB[objID]['ask'] =  data['ppc_usd.buy'];
 				myDB[objID]['last'] = data['ppc_usd.last'];
 				myDB[objID]['vol'] =  data['ppc_usd.vol'];
+				break;
+			case 'nmcbtc' :
+				myDB[objID]['bid'] =  data['nmc_btc.sell'];
+				myDB[objID]['ask'] =  data['nmc_btc.buy'];
+				myDB[objID]['last'] = data['nmc_btc.last'];
+				myDB[objID]['vol'] =  data['nmc_btc.vol'];
+				break;
+			case 'dashbtc' :
+				myDB[objID]['bid'] =  data['dash_btc.sell'];
+				myDB[objID]['ask'] =  data['dash_btc.buy'];
+				myDB[objID]['last'] = data['dash_btc.last'];
+				myDB[objID]['vol'] =  data['dash_btc.vol'];
 				break;
 			case 'nmcusd' :
 				myDB[objID]['bid'] =  data['nmc_usd.sell'];
@@ -278,7 +396,9 @@ function stdData(xchg, pair, data){
 
 ///set minimum and potential profits to trade
 var mprofit = 0.015;
-var pprofit = 0.055;
+var pprofit = 0.045;
+var fmprofit = 0.030;
+var fpprofit = 0.060;
 
 
 function compare(){
@@ -295,12 +415,23 @@ function compare(){
 					var pcompra =  myDB[objID]['bid'];
 					var ilucro = (1 - (pvenda/pcompra));
 					var ulucro = (1 - (ultvenda/ultcompra));
-					if (ulucro > pprofit){
-					console.log('potential : buy '+apair+' @ '+ultvenda+' @ '+xchgvenda+' sell @ '+ultcompra+' @ '+xchgcompra+' @ '+(ulucro*100)+'%. \n');
+					if (apair == 'btceur' || apair == 'btcusd' || apair == 'btcrub' || apair == 'btcbrl' ) {
+						if (ulucro > fpprofit){
+						console.log('fiat potential : buy '+apair+' @ '+ultvenda+' @ '+xchgvenda+' sell @ '+ultcompra+' @ '+xchgcompra+' @ '+(ulucro*100)+'%. \n');
+						}
+						if(ilucro > fmprofit){
+						console.log('FIAT INSTANT  buy '+apair+' @ '+pvenda+' @ '+xchgvenda+' sell @ '+pcompra+' @ '+xchgcompra+' @ '+(ilucro*100)+'%. \n');
+						}
+					}else{
+						if (ulucro > pprofit){
+						console.log('potential : buy '+apair+' @ '+ultvenda+' @ '+xchgvenda+' sell @ '+ultcompra+' @ '+xchgcompra+' @ '+(ulucro*100)+'%. \n');
+						}
+						if(ilucro > mprofit){
+						console.log('INSTANT  buy '+apair+' @ '+pvenda+' @ '+xchgvenda+' sell @ '+pcompra+' @ '+xchgcompra+' @ '+(ilucro*100)+'%. \n');
+						}
+
 					}
-					if(ilucro > mprofit){
-					console.log('INSTANT  buy '+apair+' @ '+pvenda+' @ '+xchgvenda+' sell @ '+pcompra+' @ '+xchgcompra+' @ '+(ilucro*100)+'%. \n');
-					}
+
 				}
 
 			}
