@@ -1,6 +1,12 @@
 var request = require('request');
 var flatten = require('flat');
+var fiat = " eur usd brl cny ars cad gbp jpy rub ";
+// var oxr = require('open-exchange-rates');
+// var fx = require('money');
+// var toeur = {}; 
 var myDB = {};
+// var myXF = {};
+
 
 
 //list of xchgs urls: an Array of exchange name, pair and endpoint url>
@@ -30,21 +36,21 @@ var urls = [
 	['btce', 'btcusd', 'https://btc-e.com/api/3/ticker/btc_usd'],
 	['btce', 'btceur', 'https://btc-e.com/api/3/ticker/btc_eur'],
 	['btce', 'dashbtc', 'https://btc-e.com/api/3/ticker/dash_btc'],
-	['btce', 'btcrub', 'https://btc-e.com/api/3/ticker/btc_rur'],
+	//['kraken', 'dogebtc', 'https://api.kraken.com/0/public/Ticker?pair=XXDGXXBT'],
+	['kraken', 'btceur', 'https://api.kraken.com/0/public/Ticker?pair=XXBTZEUR'],
+	['kraken', 'ethbtc', 'https://api.kraken.com/0/public/Ticker?pair=XETHXXBT'],
+	['kraken', 'etcbtc', 'https://api.kraken.com/0/public/Ticker?pair=XETCXXBT'],
+	['kraken', 'etceur', 'https://api.kraken.com/0/public/Ticker?pair=XETCZEUR'],
+	['kraken', 'etceth', 'https://api.kraken.com/0/public/Ticker?pair=XETCXETH'],
+	['kraken', 'daoeth', 'https://api.kraken.com/0/public/Ticker?pair=XDAOXETH'],
+	['kraken', 'ltcbtc', 'https://api.kraken.com/0/public/Ticker?pair=XLTCXXBT'],
+	['kraken', 'xrpbtc', 'https://api.kraken.com/0/public/Ticker?pair=XXRPXXBT'],
+	['kraken', 'daoeur', 'https://api.kraken.com/0/public/Ticker?pair=XDAOZEUR'],
+	['kraken', 'ltceur', 'https://api.kraken.com/0/public/Ticker?pair=XLTCZEUR'],
 	// ['kraken', 'dogebtc', 'https://api.kraken.com/0/public/Ticker?pair=XXDGXXBT'],
-	// ['kraken', 'btceur', 'https://api.kraken.com/0/public/Ticker?pair=XXBTZEUR'],
-	// ['kraken', 'ethbtc', 'https://api.kraken.com/0/public/Ticker?pair=XETHXXBT'],
-	// ['kraken', 'etcbtc', 'https://api.kraken.com/0/public/Ticker?pair=XETCXXBT'],
-	// ['kraken', 'etceur', 'https://api.kraken.com/0/public/Ticker?pair=XETCZEUR'],
-	// ['kraken', 'etceth', 'https://api.kraken.com/0/public/Ticker?pair=XETCXETH'],
-	// ['kraken', 'daoeth', 'https://api.kraken.com/0/public/Ticker?pair=XDAOXETH'],
-	// ['kraken', 'ltcbtc', 'https://api.kraken.com/0/public/Ticker?pair=XLTCXXBT'],
-	// ['kraken', 'xrpbtc', 'https://api.kraken.com/0/public/Ticker?pair=XXRPXXBT'],
-	// ['kraken', 'daoeur', 'https://api.kraken.com/0/public/Ticker?pair=XDAOZEUR'],
-	// ['kraken', 'ltceur', 'https://api.kraken.com/0/public/Ticker?pair=XLTCZEUR'],
-	['bitfinex', 'ethbtc', 'https://api.bitfinex.com/v1/pubticker/ethbtc'],
+/*	['bitfinex', 'ethbtc', 'https://api.bitfinex.com/v1/pubticker/ethbtc'],
 	['bitfinex', 'ltcbtc', 'https://api.bitfinex.com/v1/pubticker/ltcbtc'],
-	['bitfinex', 'etcbtc', 'https://api.bitfinex.com/v1/pubticker/etcbtc'],
+	['bitfinex', 'etcbtc', 'https://api.bitfinex.com/v1/pubticker/etcbtc'],*/
 	['bter', 'ethbtc', 'http://data.bter.com/api/1/ticker/eth_btc'],
 	['bter', 'dashbtc', 'http://data.bter.com/api/1/ticker/dash_btc'],
 	['bter', 'etcbtc', 'http://data.bter.com/api/1/ticker/etc_btc'],
@@ -77,13 +83,9 @@ var urls = [
   	['bittrex', 'vtcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-VTC'],
   	['bittrex', 'vrcbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-VRC'],
   	['bittrex', 'blkbtc', 'https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-BLK'],
-/*  ['hitbtc', 'btcusd', 'https://api.hitbtc.com/api/1/public/BTCUSD/ticker'],
- 	['hitbtc', 'btceur', 'https://api.hitbtc.com/api/1/public/BTCEUR/ticker'],
  	['hitbtc', 'ltcbtc', 'https://api.hitbtc.com/api/1/public/LTCBTC/ticker'],
- 	['hitbtc', 'ltcusd', 'https://api.hitbtc.com/api/1/public/LTCUSD/ticker'],
-  	['hitbtc', 'ltceur', 'https://api.hitbtc.com/api/1/public/LTCEUR/ticker'],
   	['hitbtc', 'dogebtc', 'https://api.hitbtc.com/api/1/public/DOGEBTC/ticker'],
-  	['hitbtc', 'xmrbtc', 'https://api.hitbtc.com/api/1/public/XMRBTC/ticker'],*/
+  	['hitbtc', 'xmrbtc', 'https://api.hitbtc.com/api/1/public/XMRBTC/ticker'],
 	['therock', 'btceur', 'https://www.therocktrading.com/api/ticker/BTCEUR'],
 	['therock', 'btcusd', 'https://www.therocktrading.com/api/ticker/BTCUSD'],
 	['therock', 'ltceur', 'https://www.therocktrading.com/api/ticker/LTCEUR'],
@@ -93,7 +95,7 @@ var urls = [
 	['yobit', 'etcbtc', 'https://yobit.net/api/3/ticker/etc_btc'],
 	['yobit', 'ethbtc', 'https://yobit.net/api/3/ticker/eth_btc'],
 	['yobit', 'dashbtc', 'https://yobit.net/api/3/ticker/dash_btc'],
-	['yobit', 'lsk[', 'https://yobit.net/api/3/ticker/lsk_btc'],
+	['yobit', 'lskbtc', 'https://yobit.net/api/3/ticker/lsk_btc'],
 	['yobit', 'edrcbtc', 'https://yobit.net/api/3/ticker/edrc_btc'],
 	['yobit', 'dogebtc', 'https://yobit.net/api/3/ticker/doge_btc'],
 	['yobit', 'lcbtc', 'https://yobit.net/api/3/ticker/lc_btc'],
@@ -102,8 +104,34 @@ var urls = [
 	['exmo', 'dashbtc', 'https://api.exmo.com/v1/ticker/'],
 	['exmo', 'dogebtc', 'https://api.exmo.com/v1/ticker/'],
 	['exmo', 'ltcbtc', 'https://api.exmo.com/v1/ticker/'],
-	['foxbit', 'btcbrl', 'https://api.blinktrade.com/api/v1/BRL/ticker']
+	['foxbit', 'btcbrl', 'https://api.blinktrade.com/api/v1/BRL/ticker'],
+	['b2u', 'btcbrl', 'https://www.bitcointoyou.com/api/ticker.aspx'],
+	['negcoins', 'btcbrl', 'http://www.negociecoins.com.br/api/v3/btcbrl/ticker'],
+	['mbitcoin', 'btcbrl', 'https://www.mercadobitcoin.net/api/ticker/']
 ];
+
+// function getRates() {
+// 	//set OXR API
+// 	oxr.set({ app_id: 'dcd70ee49fad49bfb7f26d1bce5f0bf0' })
+
+// 	oxr.latest(function() {
+//     // Apply exchange rates and base rate to `fx` library object:
+//     fx.rates = oxr.rates;
+//     fx.base = oxr.base;
+
+//     toeur['usd']  = fx(1).from("USD").to("EUR");
+//     toeur['brl']  = fx(1).from("BRL").to("EUR");
+//     toeur['cny']  = fx(1).from("CNY").to("EUR");
+//     toeur['ars']  = fx(1).from("ARS").to("EUR");
+//     toeur['cad']  = fx(1).from("CAD").to("EUR");
+//     toeur['gbp']  = fx(1).from("GBP").to("EUR");
+//     toeur['jpy']  = fx(1).from("JPY").to("EUR");
+//     toeur['rub']  = fx(1).from("RUB").to("EUR");
+
+//     // console.log(toeur);
+// });
+
+// }
 
 
 function getData(){
@@ -144,6 +172,16 @@ function stdData(xchg, pair, data){
 		myDB[objID]['last'] = data.last;
 		myDB[objID]['vol'] = data.volume;
 	}
+	if(xchg === 'negcoins'){
+		var objID = xchg + pair;
+		myDB[objID] = {};
+		myDB[objID]['xchg'] = xchg;
+		myDB[objID]['pair'] = pair;
+		myDB[objID]['bid'] =  data.buy *0.995;
+		myDB[objID]['ask'] = data.sell;
+		myDB[objID]['last'] = data.last;
+		myDB[objID]['vol'] = data.vol;
+	}
 	if(xchg === 'bitfinex'){
 		var objID = xchg + pair;
 		myDB[objID] = {};
@@ -154,17 +192,17 @@ function stdData(xchg, pair, data){
 		myDB[objID]['last'] = data.last_price;
 		myDB[objID]['vol'] = data.volume;
 	}
-		if(xchg === 'bter'){
+	if(xchg === 'bter'){
 		var objID = xchg + pair;
 		myDB[objID] = {};
 		myDB[objID]['xchg'] = xchg;
 		myDB[objID]['pair'] = pair;
-		myDB[objID]['bid'] =  data.buy;
+		myDB[objID]['bid'] =  data.buy * 1.01;
 		myDB[objID]['ask'] = data.sell * 1.01;
-		myDB[objID]['last'] = data.last * 1.01;
+		myDB[objID]['last'] = data.last;
 		myDB[objID]['vol'] = data.vol_btc;
 	}
-		if(xchg === 'bittrex'){
+	if(xchg === 'bittrex'){
 		var objID = xchg + pair;
 		myDB[objID] = {};
 		myDB[objID]['xchg'] = xchg;
@@ -189,25 +227,30 @@ function stdData(xchg, pair, data){
 		myDB[objID] = {};
 		myDB[objID]['xchg'] = xchg;
 		myDB[objID]['pair'] = pair;
-		switch (pair){
-			case 'btcbrl' :
-				myDB[objID]['bid'] =   data.buy;
-				myDB[objID]['ask'] =  data.sell;
-				myDB[objID]['last'] = data.last;
-				myDB[objID]['vol'] =  data.vol;
-				break;
-			case 'btceur' :
-				myDB[objID]['bid'] =   data.buy;
-				myDB[objID]['ask'] =  data.sell;
-				myDB[objID]['last'] = data.last;
-				myDB[objID]['vol'] =  data.vol;
-				break;
-			case 'btcusd' :
-				myDB[objID]['bid'] =   data.buy;
-				myDB[objID]['ask'] =  data.sell;
-				myDB[objID]['last'] = data.last;
-				myDB[objID]['vol'] =  data.vol;
-		}
+		myDB[objID]['bid'] =   data.buy * 0.9861;
+		myDB[objID]['ask'] =  data.sell;
+		myDB[objID]['last'] = data.last;
+		myDB[objID]['vol'] =  data.vol;
+	}
+	if(xchg === 'b2u'){
+		var objID = xchg + pair;
+		myDB[objID] = {};
+		myDB[objID]['xchg'] = xchg;
+		myDB[objID]['pair'] = pair;
+		myDB[objID]['bid'] =  data['ticker.buy'] * 0.981;
+		myDB[objID]['ask'] = data['ticker.sell'] * 1.0189;
+		myDB[objID]['last'] = data['ticker.last'];
+		myDB[objID]['vol'] = data['ticker.vol'];
+	}
+	if(xchg === 'mbitcoin'){
+		var objID = xchg + pair;
+		myDB[objID] = {};
+		myDB[objID]['xchg'] = xchg;
+		myDB[objID]['pair'] = pair;
+		myDB[objID]['bid'] =  data['ticker.buy'] * 0.975;
+		myDB[objID]['ask'] = data['ticker.sell'] * 1.02;
+		myDB[objID]['last'] = data['ticker.last'];
+		myDB[objID]['vol'] = data['ticker.vol'];
 	}
 	if(xchg === 'yobit'){
 		var objID = xchg + pair;
@@ -287,12 +330,6 @@ function stdData(xchg, pair, data){
 				myDB[objID]['ask'] =  data['btc_usd.buy'];
 				myDB[objID]['last'] = data['btc_usd.last'];
 				myDB[objID]['vol'] =  data['btc_usd.vol'];
-				break;
-			case 'btcrub' :
-				myDB[objID]['bid'] =  data['btc_rur.sell'];
-				myDB[objID]['ask'] =  data['btc_rur.buy'];
-				myDB[objID]['last'] = data['btc_rur.last'];
-				myDB[objID]['vol'] =  data['btc_rur.vol'];
 				break;
 			case 'ethusd' :
 				myDB[objID]['bid'] =  data['eth_usd.sell'];
@@ -457,8 +494,8 @@ function stdData(xchg, pair, data){
 
 ///set minimum and potential profits to trade
 var mprofit = 0.015;
-var pprofit = 0.045;
-var fmprofit = 0.030;
+var pprofit = 0.060;
+var fmprofit = 0.0175;
 var fpprofit = 0.060;
 
 
@@ -472,11 +509,12 @@ function compare(){
 			if( myDB[objID]['xchg'] !== xchgvenda ){
 				var xchgcompra =  myDB[objID]['xchg'];
 				if ( myDB[objID]['pair'] === apair ) {
+					var sstr = apair.slice(3, 6);
 					var ultcompra = myDB[objID]['last'];
 					var pcompra =  myDB[objID]['bid'];
 					var ilucro = (1 - (pvenda/pcompra));
 					var ulucro = (1 - (ultvenda/ultcompra));
-					if (apair == 'btceur' || apair == 'btcusd' || apair == 'btcrub' || apair == 'btcbrl' || apair == 'ltcusd') {
+					if (fiat.indexOf(sstr) > -1) {
 						if (ulucro > fpprofit){
 						console.log('fiat potential : buy '+apair+' @ '+ultvenda+' @ '+xchgvenda+' sell @ '+ultcompra+' @ '+xchgcompra+' @ '+(ulucro*100)+'%. \n');
 						}
@@ -503,6 +541,11 @@ function compare(){
 }
 
 
+setImmediate(function start(){
+	// getRates();
+	getData();
+})
+
 setInterval(function runGetData(){
 	getData();
 }, 5000)
@@ -512,4 +555,9 @@ setInterval(function runCompare(){
 	compare();
 	console.log("\n\n\n\n\n\n\n\n\n");
 }, 5000)
+
+
+// setInterval(function runGetRates(){
+// 	getRates();
+// }, 3600000)
 

@@ -6,7 +6,7 @@ var flatten = require('flat');
 
 //list of xchgs urls: an Array of exchange name, pair and endpoint url>
 var urls = [    
-	['foxbit', 'brlbtc', 'https://api.blinktrade.com/api/v1/BRL/ticker']
+	['mbitcoin', 'btcbrl', 'https://www.mercadobitcoin.net/api/ticker/']
 ];
 
 

@@ -6,7 +6,7 @@ var fiaz =  fiat.concat(fiax);
 var pair = "btceur";
 var paix = "btceax";
 
-var sstr = paix.slice(3, 6);
+var sstr = paix.slice(0, 3);
 
 if(fiaz.indexOf(sstr) > -1){
 	console.log(sstr +' present');

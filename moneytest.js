@@ -19,5 +19,8 @@ oxr.latest(function() {
     toeur['rub']  = fx(1).from("RUB").to("EUR");
 
     console.log(toeur);
-});
 
+    var value = 1800 * toeur.brl;
+
+    console.log(value);
+});
