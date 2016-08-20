@@ -6,7 +6,11 @@ var flatten = require('flat');
 
 //list of xchgs urls: an Array of exchange name, pair and endpoint url>
 var urls = [    
-	['mbitcoin', 'btcbrl', 'https://www.mercadobitcoin.net/api/ticker/']
+	['exmo', 'btceur', 'https://api.exmo.com/v1/ticker'],
+  ['exmo', 'btcusd', 'https://api.exmo.com/v1/ticker'],
+  ['exmo', 'dashusd', 'https://api.exmo.com/v1/ticker'],
+  ['exmo', 'ethusd', 'https://api.exmo.com/v1/ticker'],
+
 ];
 
 

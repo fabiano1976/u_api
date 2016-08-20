@@ -157,8 +157,8 @@ function stdData(xchg, pair, data){
 		myDB[objID] = {};
 		myDB[objID]['xchg'] = xchg;
 		myDB[objID]['pair'] = pair;
-		myDB[objID]['bid'] =  data.best_bid;
-		myDB[objID]['ask'] = data.best_ask;
+		myDB[objID]['bid'] =  data.best_bid *0.995;
+		myDB[objID]['ask'] = data.best_ask * 1.015;
 		myDB[objID]['last'] = data.last;
 		myDB[objID]['vol'] = data.volume;
 	}
@@ -197,7 +197,7 @@ function stdData(xchg, pair, data){
 		myDB[objID] = {};
 		myDB[objID]['xchg'] = xchg;
 		myDB[objID]['pair'] = pair;
-		myDB[objID]['bid'] =  data.buy * 1.01;
+		myDB[objID]['bid'] =  data.buy;
 		myDB[objID]['ask'] = data.sell * 1.01;
 		myDB[objID]['last'] = data.last;
 		myDB[objID]['vol'] = data.vol_btc;
@@ -247,7 +247,7 @@ function stdData(xchg, pair, data){
 		myDB[objID] = {};
 		myDB[objID]['xchg'] = xchg;
 		myDB[objID]['pair'] = pair;
-		myDB[objID]['bid'] =  data['ticker.buy'] * 0.975;
+		myDB[objID]['bid'] =  data['ticker.buy'] * 0.98;
 		myDB[objID]['ask'] = data['ticker.sell'] * 1.02;
 		myDB[objID]['last'] = data['ticker.last'];
 		myDB[objID]['vol'] = data['ticker.vol'];
@@ -320,20 +320,20 @@ function stdData(xchg, pair, data){
 		myDB[objID]['pair'] = pair;
 		switch (pair){
 			case 'btceur' :
-				myDB[objID]['bid'] =   data['btc_eur.sell'];
-				myDB[objID]['ask'] =  data['btc_eur.buy'];
+				myDB[objID]['bid'] =   data['btc_eur.sell' *1.01];
+				myDB[objID]['ask'] =  data['btc_eur.buy' * 0.99];
 				myDB[objID]['last'] = data['btc_eur.last'];
 				myDB[objID]['vol'] =  data['btc_eur.vol'];
 				break;
 			case 'btcusd' :
-				myDB[objID]['bid'] =  data['btc_usd.sell'];
-				myDB[objID]['ask'] =  data['btc_usd.buy'];
+				myDB[objID]['bid'] =  data['btc_usd.sell' *1.01];
+				myDB[objID]['ask'] =  data['btc_usd.buy' * 0.99];
 				myDB[objID]['last'] = data['btc_usd.last'];
 				myDB[objID]['vol'] =  data['btc_usd.vol'];
 				break;
 			case 'ethusd' :
-				myDB[objID]['bid'] =  data['eth_usd.sell'];
-				myDB[objID]['ask'] =  data['eth_usd.buy'];
+				myDB[objID]['bid'] =  data['eth_usd.sell' *1.01];
+				myDB[objID]['ask'] =  data['eth_usd.buy' * 0.99];
 				myDB[objID]['last'] = data['eth_usd.last'];
 				myDB[objID]['vol'] =  data['eth_usd.vol'];
 				break;
@@ -356,14 +356,14 @@ function stdData(xchg, pair, data){
 				myDB[objID]['vol'] =  data['ltc_btc.vol'];
 				break;
 			case 'ltcusd' :
-				myDB[objID]['bid'] =  data['ltc_usd.sell'];
-				myDB[objID]['ask'] =  data['ltc_usd.buy'];
+				myDB[objID]['bid'] =  data['ltc_usd.sell' *1.01];
+				myDB[objID]['ask'] =  data['ltc_usd.buy' * 0.99];
 				myDB[objID]['last'] = data['ltc_usd.last'];
 				myDB[objID]['vol'] =  data['ltc_usd.vol'];
 				break;
 			case 'ppcusd' :
-				myDB[objID]['bid'] =  data['ppc_usd.sell'];
-				myDB[objID]['ask'] =  data['ppc_usd.buy'];
+				myDB[objID]['bid'] =  data['ppc_usd.sell' *1.01];
+				myDB[objID]['ask'] =  data['ppc_usd.buy' * 0.99];
 				myDB[objID]['last'] = data['ppc_usd.last'];
 				myDB[objID]['vol'] =  data['ppc_usd.vol'];
 				break;
@@ -380,7 +380,7 @@ function stdData(xchg, pair, data){
 				myDB[objID]['vol'] =  data['dash_btc.vol'];
 				break;
 			case 'nmcusd' :
-				myDB[objID]['bid'] =  data['nmc_usd.sell'];
+				myDB[objID]['bid'] =  data['nmc_usd.sell' *1.01];
 				myDB[objID]['ask'] =  data['nmc_usd.buy'];
 				myDB[objID]['last'] = data['nmc_usd.last'];
 				myDB[objID]['vol'] =  data['nmc_usd.vol'];
@@ -493,10 +493,10 @@ function stdData(xchg, pair, data){
 }
 
 ///set minimum and potential profits to trade
-var mprofit = 0.015;
-var pprofit = 0.060;
-var fmprofit = 0.0175;
-var fpprofit = 0.060;
+var mprofit = 0.01;
+var pprofit = 1000;
+var fmprofit = 0.0075;
+var fpprofit = 0.0750;
 
 
 function compare(){
